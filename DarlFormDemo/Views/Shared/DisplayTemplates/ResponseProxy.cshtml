@@ -1,0 +1,45 @@
+﻿@model DarlCommon.ResponseProxy
+
+<div class="form-group">
+
+    @switch (Model.rtype)
+    {
+        case 0:
+            <div class="well well-lg">
+                @Model.Preamble;
+            </div>
+            break;
+        case 1:
+            <div class="control-label col-md-6">
+                @Html.DisplayFor(model => model.Annotation)
+            </div>
+            <div class="col-md-6">
+                @Html.DisplayFor(model => model.MainText)
+            </div>
+            break;
+        case 2:
+
+            <div class="control-label col-md-4">
+                @Html.DisplayFor(model => model.Annotation)
+            </div>
+            <div class="col-md-1">
+                @Html.DisplayFor(model => model.LowText)
+            </div>
+            <div class="col-md-6">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info" style="width: @{@Model.Value}%; background-image: none; background-color: @{@Model.Color}; "> @Html.DisplayFor(model => model.Value)%</div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                @Html.DisplayFor(model => model.HighText)
+            </div>
+
+            break;
+        case 3:
+            <div class="control-label col-md-4">
+                <a href="@Model.MainText" class="btn btn-primary" style="opacity:@Model.format" target="_blank">@Model.Annotation</a>
+            </div>
+            break;
+    }
+
+</div>

@@ -1,0 +1,29 @@
+﻿@model DarlCommon.QuestionProxy
+
+@Html.HiddenFor(model => model.Reference)
+@Html.HiddenFor(model => model.qtype)
+
+<div class="form-group">
+    <div class="control-label col-md-4">
+         @Html.DisplayFor(model => model.Text)
+    </div>
+        <div class="col-md-6">
+            @if (Model.qtype == 0)
+            {
+                @Html.TextBoxFor(model => model.DResponse, new { @type = "number", min = Model.minval, max = Model.maxval, step = Model.increment, @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DResponse)
+            }
+            @if (Model.qtype == 1)
+            {
+                @Html.DropDownListFor(model => model.SResponse, new SelectList(Model.categories), new { @class = "form-control" });
+                @Html.ValidationMessageFor(model => model.SResponse)
+            }
+            @if (Model.qtype == 2)
+            {
+                @Html.EditorFor(model => model.SResponse, new { @class = "form-control", pattern = Model.format, title = Model.Reference })
+                @Html.ValidationMessageFor(model => model.SResponse)
+            }
+
+        </div>
+    </div>
+
